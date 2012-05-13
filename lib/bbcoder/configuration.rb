@@ -1,9 +1,23 @@
 class BBCoder
   class Configuration
     @@tags = {}
+    @@preparse_tokens = {}
 
     def [](value)
       @@tags[value]
+    end
+
+    def preparse(*args)
+      raise 'Hash required as last argument' unless args.last.is_a?(Hash)
+      options = args.pop
+      raise 'No :as option given' unless options.has_key?(:as)
+      args.each do |arg|
+        @@preparse_tokens[arg] = options
+      end
+    end
+
+    def preparse_tokens
+      @@preparse_tokens
     end
 
     def tag(name, options = {}, &block)

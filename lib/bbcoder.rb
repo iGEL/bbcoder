@@ -4,6 +4,7 @@ require 'bbcoder/tag'
 require 'bbcoder/buffer'
 require 'bbcoder/buffer_tags'
 require 'bbcoder/string'
+require 'bbcoder/preparser'
 
 BBCoder.configure do
   tag :p

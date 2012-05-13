@@ -60,6 +60,14 @@ Configuration Examples
           %(<a href="#{meta}">#{content}</a>)
         end
       end
+
+      # Use the preparser to convert URLs into [url] tags
+      preparse /(\A|[^\]=])(https?:\/\/\S+[^\s.,\)\];:])/, :as => '\1[url]\2[/url]'
+      preparse /(\A|[^\]=])(www\.\S+[^\s.,\)\];:])/, :as => '\1[url=http://\2]\2[/url]'
+
+      # Or to convert smileys
+      preparse ":-)", ":)", :as => '[img]/images/smileys/smile.png[/img]'
+      preparse ":rolleyes:", :as => '[img=:rolleyes:]/images/smileys/rolleyes.gif[/img]'
     end
 
 

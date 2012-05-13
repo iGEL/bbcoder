@@ -10,6 +10,7 @@ class BBCoder
   end
 
   def initialize(text)
+    text = Preparser.new(text).to_s
     @raw = text.split(/(\[[^\[\]]+\])/i).select {|string| string.size > 0}
   end
 
